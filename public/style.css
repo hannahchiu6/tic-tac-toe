@@ -148,8 +148,16 @@ h1 {
   transition: background 0.15s ease;
 }
 
-.cell:disabled {
-  opacity: 1;
+.cell:disabled,
+.cell.locked {
+  opacity: 1 !important;
+  cursor: default;
+}
+
+.cell:disabled::before,
+.cell.locked::before {
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 .cell:not(.X):not(.O):hover {

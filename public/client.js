@@ -29,7 +29,9 @@ function setStatus(text) {
 
 function cellsEnabled(enabled) {
   cells.forEach((cell, index) => {
-    cell.disabled = !enabled || board[index] !== null;
+    const locked = !enabled || board[index] !== null;
+    cell.classList.toggle('locked', locked);
+    cell.setAttribute('aria-disabled', String(locked));
   });
 }
 
@@ -46,8 +48,8 @@ function resetBoard() {
   board = new Array(9).fill(null);
   cells.forEach((cell) => {
     cell.textContent = '';
-    cell.classList.remove('X', 'O', 'winning-cell');
-    cell.disabled = false;
+    cell.classList.remove('X', 'O', 'winning-cell', 'locked');
+    cell.removeAttribute('aria-disabled');
   });
 }
 
